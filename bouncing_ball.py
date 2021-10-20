@@ -10,6 +10,7 @@ Task  : Trace locus of ball starting from path (0,0) -> (1,1) -> etc.
 Output: All locations of ball [(0,0), (1,1), ... ] and plot
 
 '''
+print('Starting...')
 
 import matplotlib.pyplot as plt
 from animator import animate_points
@@ -34,6 +35,7 @@ def show(paths, preprocess=False, *args, **kwargs):
 			all_y.append(j)
 
 	plt.plot(all_x, all_y, 'r*')
+	animate_points(pathi,pathj,plot_lines=True, fill = 10)
 	plt.show()
 
 def recursivef(direction, loc , m,n):
@@ -113,7 +115,6 @@ direction = 1,1
 m = 5
 n = 6
 
-print('Only anticlockwise bouncing supported currently')
 
 if input('to change default values enter yes'):
 	loc = input('loc [eg: 0,0] = ').strip().split(',')

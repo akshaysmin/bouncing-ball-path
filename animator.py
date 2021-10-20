@@ -66,9 +66,22 @@ def animate(plot_object,interval=50, frames=100):
 	plt.show()
 
 #main function
-def animate_points(x,y,interval=50, frames=100): 
+def animate_points(x,y,interval=50, frames=100, plot_lines=False, fill=False): 
 	global fig, ax
 	fig, ax = plt.subplots()
+
+	if plot_lines: ax.plot(x,y, '--')
+	if fill:
+		x_ = []
+		y_ = []
+		for i in range(len(x)-1):
+			x_ += [x[i] + j*(x[i+1]-x[i])/(fill+1) for j in range(fill+1)]
+			y_ += [y[i] + j*(y[i+1]-y[i])/(fill+1) for j in range(fill+1)]
+		x_ += [x[-1]]
+		y_ += [y[-1]]
+
+		x,y = x_,y_
+
 	xlim = min(x),max(x)
 	ylim = min(y), max(y)
 	anim_object = plotObject(fig, ax, dsource=data_source(x,y), xlim = xlim, ylim = ylim)
